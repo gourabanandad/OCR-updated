@@ -534,18 +534,11 @@
                 if (mark === null || mark === undefined) return '-';
                 if (mark === 'A') return '<span class="badge badge-danger">Absent</span>';
                 if (typeof mark === 'number') {
-                    if isFloat(mark) {
-                        mif (mark < 20.00) {
-                        return `<span class="badge badge-warning">${mark}</span>`;
-                    }
-                    return `<span class="badge badge-success">${mark}</span>`;
-                    }
-                    else{
                         if (mark < 20) {
                         return `<span class="badge badge-warning">${mark}</span>`;
                     }
                     return `<span class="badge badge-success">${mark}</span>`;
-                    }
+                    
                     
                 }
                 return mark;

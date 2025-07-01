@@ -1,181 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marks Upload System</title>
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Processing System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-      :root {
-        --primary-color: #4e73df;
-        --secondary-color: #f8f9fc;
-        --accent-color: #2e59d9;
-      }
-      
-      body {
-        background-color: var(--secondary-color);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }
-      
-      .navbar {
-        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-        background: linear-gradient(135deg, var(--primary-color), var(--accent-color)) !important;
-      }
-      
-      .hero-section {
-        background: linear-gradient(rgba(78, 115, 223, 0.8), rgba(78, 115, 223, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-        background-size: cover;
-        background-position: center;
-        color: white;
-        padding: 5rem 0;
-        margin-bottom: 3rem;
-        border-radius: 0 0 20px 20px;
-      }
-      
-      .card-option {
-        transition: all 0.3s ease;
-        border: none;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
-      }
-      
-      .card-option:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.2);
-      }
-      
-      .card-option i {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-      }
-      
-      .btn-primary {
-        background-color: var(--primary-color);
-        border-color: var(--primary-color);
-      }
-      
-      .btn-primary:hover {
-        background-color: var(--accent-color);
-        border-color: var(--accent-color);
-      }
-      
-      .option-icon {
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        margin: 0 auto 1rem;
-      }
+        .container {
+            max-width: 800px;
+            margin-top: 50px;
+        }
+        .result-container {
+            margin-top: 30px;
+            display: none;
+        }
+        .spinner {
+            display: none;
+        }
     </style>
-  </head>
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#">
-          <i class="fas fa-graduation-cap me-2"></i>Marks Upload System
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i> Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-user me-1"></i> Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-cog me-1"></i> Settings</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-section text-center">
-      <div class="container">
-        <h1 class="display-4 fw-bold mb-3">Upload Student Marks</h1>
-        <p class="lead mb-4">Select the type of marks you want to upload from the options below</p>
-      </div>
-    </section>
-
-    <!-- Options Section -->
-    <section class="container mb-5">
-      <div class="row g-4 justify-content-center">
-        <!-- CA Option -->
-        <div class="col-md-4">
-          <div class="card card-option text-center py-4">
-            <div class="card-body">
-              <div class="option-icon bg-primary bg-gradient text-white">
-                <i class="fas fa-file-alt"></i>
-              </div>
-              <h3 class="h4 mb-3">Continuous Assessment</h3>
-              <p class="text-muted mb-4">Upload marks for Continuous Assessment tests and assignments.</p>
-              <a href="/ca" class="btn btn-primary px-4">
-                <i class="fas fa-upload me-2"></i> Upload CA
-              </a>
-            </div>
-          </div>
-        </div>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Marks Processing System</h1>
         
-        <!-- PCA Option -->
-        <div class="col-md-4">
-          <div class="card card-option text-center py-4">
+        <div class="card shadow">
             <div class="card-body">
-              <div class="option-icon bg-success bg-gradient text-white">
-                <i class="fas fa-clipboard-check"></i>
-              </div>
-              <h3 class="h4 mb-3">Practical Assessment</h3>
-              <p class="text-muted mb-4">Upload marks for Practical Continuous Assessment components.</p>
-              <a href="/pca" class="btn btn-success px-4">
-                <i class="fas fa-upload me-2"></i> Upload PCA
-              </a>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="marksFile" class="form-label">Upload Marksheet Image</label>
+                        <input class="form-control" type="file" id="marksFile" accept=".png,.jpg,.jpeg" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="spinner-border spinner-border-sm spinner" role="status" aria-hidden="true"></span>
+                        Process Marks
+                    </button>
+                </form>
             </div>
-          </div>
         </div>
-        
-        <!-- Semester Option -->
-        <div class="col-md-4">
-          <div class="card card-option text-center py-4">
+
+        <div id="resultContainer" class="result-container card shadow mt-4">
             <div class="card-body">
-              <div class="option-icon bg-info bg-gradient text-white">
-                <i class="fas fa-book"></i>
-              </div>
-              <h3 class="h4 mb-3">Semester Exams<br><b>(🚧Working on progress🚧)</b></h3>
-              <p class="text-muted mb-4">Upload final semester examination marks for students.</p>
-              <a href="/semester" class="btn btn-info px-4">
-                <i class="fas fa-upload me-2"></i> Upload Semester
-              </a>
+                <h3 class="card-title">Processing Results</h3>
+                <div id="statusMessage" class="alert"></div>
+                <div class="table-responsive">
+                    <table id="marksTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Paper Code</th>
+                                <th>Subject</th>
+                                <th>CA1</th>
+                                <th>CA2</th>
+                                <th>CA3</th>
+                                <th>CA4</th>
+                                <th>Teacher</th>
+                            </tr>
+                        </thead>
+                        <tbody id="marksTableBody">
+                            <!-- Results will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="jsonInfo" class="mt-3"></div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
-      <div class="container text-center">
-        <p class="mb-0">&copy; 2023 Marks Upload System. All rights reserved.</p>
-      </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Font Awesome JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-  </body>
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('marksFile');
+            const spinner = document.querySelector('.spinner');
+            const submitBtn = document.querySelector('#uploadForm button[type="submit"]');
+            const resultContainer = document.getElementById('resultContainer');
+            const statusMessage = document.getElementById('statusMessage');
+            const marksTableBody = document.getElementById('marksTableBody');
+            const jsonInfo = document.getElementById('jsonInfo');
+            
+            if (!fileInput.files.length) {
+                alert('Please select a file');
+                return;
+            }
+            
+            // Show loading state
+            spinner.style.display = 'inline-block';
+            submitBtn.disabled = true;
+            resultContainer.style.display = 'none';
+            
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            
+            try {
+                const response = await fetch('/process_marks', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    // Display success message
+                    statusMessage.className = 'alert alert-success';
+                    statusMessage.textContent = 'Marks processed successfully!';
+                    
+                    // Populate the table
+                    marksTableBody.innerHTML = '';
+                    data.data.forEach(mark => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${mark.paper_code}</td>
+                            <td>${mark.paper_name}</td>
+                            <td>${mark.ca1}</td>
+                            <td>${mark.ca2}</td>
+                            <td>${mark.ca3}</td>
+                            <td>${mark.ca4}</td>
+                            <td>${mark.teacher}</td>
+                        `;
+                        marksTableBody.appendChild(row);
+                    });
+                    
+                    // Show JSON file info
+                    jsonInfo.innerHTML = `
+                        <p class="text-muted">Processed at: ${new Date(data.timestamp).toLocaleString()}</p>
+                        <p>JSON file saved at: <code>${data.json_path}</code></p>
+                    `;
+                } else {
+                    // Display error message
+                    statusMessage.className = 'alert alert-danger';
+                    statusMessage.textContent = data.message || 'Error processing marks';
+                }
+                
+                // Show results
+                resultContainer.style.display = 'block';
+            } catch (error) {
+                console.error('Error:', error);
+                statusMessage.className = 'alert alert-danger';
+                statusMessage.textContent = 'An error occurred while processing the file';
+                resultContainer.style.display = 'block';
+            } finally {
+                // Reset loading state
+                spinner.style.display = 'none';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

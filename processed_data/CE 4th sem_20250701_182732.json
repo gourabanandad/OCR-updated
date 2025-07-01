@@ -1,0 +1,74 @@
+[
+  {
+    "paper_code": "Paper Code(Unigue Code\uff09",
+    "paper_name": "Paper Name",
+    "ca1": "CA 1",
+    "ca2": "CA 2",
+    "ca3": "CA 3",
+    "ca4": "CA 4",
+    "teacher": "Responsible Teacher"
+  },
+  {
+    "paper_code": "CE(ES)401(4443)",
+    "paper_name": "INTRODUCTION TO FLUID MECHANICS",
+    "ca1": "",
+    "ca2": "20",
+    "ca3": "6.00",
+    "ca4": "20",
+    "teacher": "Malay Kanti Ghosh"
+  },
+  {
+    "paper_code": "CE(ES)402(4444)",
+    "paper_name": "INTRODUCTION TOSOLUID MECHANICS",
+    "ca1": "20",
+    "ca2": "22",
+    "ca3": "18.00",
+    "ca4": "19",
+    "teacher": "ARGHYADIP DAS"
+  },
+  {
+    "paper_code": "CE(PC)401(4445)",
+    "paper_name": "SOIL MECHANICS-I",
+    "ca1": "23",
+    "ca2": "25",
+    "ca3": "21.00",
+    "ca4": "18",
+    "teacher": "DEBABRATA DUTTA"
+  },
+  {
+    "paper_code": "CE(PC)402(4446)",
+    "paper_name": "ENVIRONMENTALENGINEERING-I",
+    "ca1": "18",
+    "ca2": "19",
+    "ca3": "16.00",
+    "ca4": "25",
+    "teacher": "Utpal Mandal"
+  },
+  {
+    "paper_code": "CE(PC)403(4447)",
+    "paper_name": "SURVEYING&GEOMATICS",
+    "ca1": "20",
+    "ca2": "22",
+    "ca3": "24.00",
+    "ca4": "16",
+    "teacher": "ARGHYADIP DAS"
+  },
+  {
+    "paper_code": "CE(PC)404(4448)",
+    "paper_name": "CONCRETE TECHNOLOGY",
+    "ca1": "16",
+    "ca2": "18",
+    "ca3": "15.50",
+    "ca4": "13",
+    "teacher": "SOURAV HAJRA"
+  },
+  {
+    "paper_code": "CE(HS)401(4449)",
+    "paper_name": "CIVILENGINEERING-SOCIETAL&GLOBALIMPACT",
+    "ca1": "23",
+    "ca2": "23",
+    "ca3": "21.00",
+    "ca4": "15",
+    "teacher": "Arpan Ray"
+  }
+]

@@ -48,10 +48,8 @@
                             <tr>
                                 <th>Paper Code</th>
                                 <th>Subject</th>
-                                <th>CA1</th>
-                                <th>CA2</th>
-                                <th>CA3</th>
-                                <th>CA4</th>
+                                <th>PCA1</th>
+                                <th>PCA2</th>
                                 <th>Teacher</th>
                             </tr>
                         </thead>
@@ -91,7 +89,7 @@
             formData.append('file', fileInput.files[0]);
             
             try {
-                const response = await fetch('/process_ca_marks', {
+                const response = await fetch('/process_pca_marks', {
                     method: 'POST',
                     body: formData
                 });
@@ -110,10 +108,8 @@
                         row.innerHTML = `
                             <td>${mark.paper_code}</td>
                             <td>${mark.paper_name}</td>
-                            <td>${mark.ca1}</td>
-                            <td>${mark.ca2}</td>
-                            <td>${mark.ca3}</td>
-                            <td>${mark.ca4}</td>
+                            <td>${mark.pca1}</td>
+                            <td>${mark.pca2}</td>
                             <td>${mark.teacher}</td>
                         `;
                         marksTableBody.appendChild(row);

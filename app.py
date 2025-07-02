@@ -72,28 +72,54 @@ def parse_ca_html(html_content: str) -> List[Dict[str, str]]:
         except Exception:
             continue
     return cleaned_data
-
+def sanitize(text: str) -> str:
+    return str(text).strip().replace('\xa0', ' ').replace('\n', ' ')
 def parse_pca_html(html_content: str) -> List[Dict[str, str]]:
-    tables = pd.read_html(StringIO(html_content))
+    try:
+        tables = pd.read_html(StringIO(html_content))
+    except Exception:
+        return []
+
     if not tables:
         return []
-    df = tables[0]
 
+    df = tables[0]
     cleaned_data = []
-    for _, row in df.iterrows():
-        if 'SEMESTER' in str(row[0]).upper() or str(row[0]).strip() in ['Paper Code(Unique Code)', '']:
+
+    for index, row in df.iterrows():
+        row = row.fillna('')
+        row_data = list(row.values)
+
+        # Padding in case fewer columns due to OCR table merging issues
+        if len(row_data) < 5:
+            row_data += [''] * (5 - len(row_data))
+
+        paper_code = sanitize(row_data[0])
+        paper_name = sanitize(row_data[1])
+        pca1 = sanitize(row_data[2])
+        pca2 = sanitize(row_data[3])
+        teacher = sanitize(row_data[4]) if len(row_data) >= 5 else ""
+
+        # Attempt fallback for missing teacher name (may be joined in PCA2)
+        if not teacher and len(pca2.split()) > 1:
+            possible_score, *maybe_teacher = pca2.split()
+            if possible_score.isdigit():
+                pca2 = possible_score
+                teacher = ' '.join(maybe_teacher)
+
+        # Skip headers or empty rows
+        if not paper_code or 'SEMESTER' in paper_code.upper() or 'Paper Code' in paper_code:
             continue
-        try:
-            record = {
-                "paper_code": sanitize(row[0]),
-                "paper_name": sanitize(row[1]),
-                "pca1": sanitize(row[2]),
-                "pca2": sanitize(row[3]),
-                "teacher": sanitize(row[6]) if len(row) > 6 else ""
-            }
-            cleaned_data.append(record)
-        except Exception:
-            continue
+
+        record = {
+            "paper_code": paper_code,
+            "paper_name": paper_name,
+            "pca1": pca1,
+            "pca2": pca2,
+            "teacher": teacher
+        }
+        cleaned_data.append(record)
+
     return cleaned_data
 
 def save_json_output(data: List[Dict[str, str]], filename: str) -> str:
